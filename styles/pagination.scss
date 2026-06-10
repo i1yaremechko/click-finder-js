@@ -1,0 +1,58 @@
+@import "variables";
+
+.pagination {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 23px auto 24px;
+  display: flex;
+
+  &__page,
+  &__arrow,
+  &__ellipsis {
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid $color-light-gray;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+    transition: all .2s;
+    display: flex;
+
+    &:disabled {
+      opacity: .1;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: $color-primary;
+    }
+
+    &.active {
+      color: $color-white;
+      background-color: $color-primary;
+      border: none;
+
+      &:hover {
+        background-color: $color-dark;
+      }
+    }
+  }
+
+  &__arrow {
+    color: $color-primary;
+    border: none;
+    font-size: 68px;
+    position: relative;
+    top: -6px;
+    left: -2px;
+
+    &:first-child {
+      left: 2px;
+    }
+  }
+}

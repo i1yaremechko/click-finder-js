@@ -1,0 +1,177 @@
+@import "variables";
+
+.pagination {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 23px auto 24px;
+  display: flex;
+}
+
+.pagination__page,
+.pagination__arrow,
+.pagination__ellipsis {
+  cursor: pointer;
+  background: 0 0;
+  border: 2px solid $color-light-gray;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  font-size: 16px;
+  transition: all .2s;
+  display: flex;
+}
+
+.pagination__page:disabled,
+.pagination__arrow:disabled,
+.pagination__ellipsis:disabled {
+  opacity: .1;
+  cursor: not-allowed;
+}
+
+.pagination__page:hover:not(:disabled),
+.pagination__arrow:hover:not(:disabled),
+.pagination__ellipsis:hover:not(:disabled) {
+  border-color: $color-primary;
+}
+
+.pagination__page.active,
+.pagination__arrow.active,
+.pagination__ellipsis.active {
+  color: $color-white;
+  background-color: $color-primary;
+  border: none;
+}
+
+.pagination__page.active:hover,
+.pagination__arrow.active:hover,
+.pagination__ellipsis.active:hover {
+  background-color: $color-dark;
+}
+
+.pagination__arrow {
+  color: $color-primary;
+  border: none;
+  font-size: 68px;
+  position: relative;
+  top: -6px;
+  left: -2px;
+}
+
+.pagination__arrow:first-child {
+  left: 2px;
+}
+
+.table-wrapper {
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media screen and (width >=1180px) {
+  .table-wrapper {
+    overflow-x: hidden;
+  }
+}
+
+.custom-table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-radius: 10px;
+  width: 100%;
+  font-family: $font-main;
+  overflow: hidden;
+}
+
+.custom-table thead th {
+  color: $color-white;
+  text-align: center;
+  background-color: $color-primary;
+  border-right: 1px solid $color-white;
+  height: 49px;
+  padding: 11px 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.custom-table thead th:first-child {
+  width: 64px;
+}
+
+.custom-table thead th:nth-child(2) {
+  width: 151px;
+}
+
+.custom-table thead th:nth-child(3) {
+  width: 133px;
+}
+
+.custom-table thead th:nth-child(4) {
+  width: 239px;
+}
+
+.custom-table thead th:nth-child(5) {
+  width: 112px;
+}
+
+.custom-table thead th:nth-child(6) {
+  width: 147px;
+}
+
+.custom-table thead th:nth-child(7) {
+  width: 153px;
+}
+
+.custom-table thead th:nth-child(8) {
+  width: 181px;
+}
+
+.custom-table tbody tr {
+  background-color: $color-table-bg-1;
+}
+
+.custom-table tbody tr:nth-child(2n) {
+  background-color: $color-light-gray;
+}
+
+.custom-table tbody td {
+  cursor: default;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  border-bottom: none;
+  border-right: 1px solid $color-white;
+  padding: 6.25px 0;
+  font-size: 16px;
+  line-height: 19.5px;
+  overflow: hidden;
+}
+
+.custom-table tbody td:nth-child(4) {
+  text-align: start;
+  padding: 6.25px 24px;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #3a80ba 0% 50%, #0000 100%) 0 0 / 200% 100%;
+  border-radius: 10px;
+  height: 5px;
+  animation: 1.5s linear infinite loading;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+@keyframes loading {
+  0% {
+    background-position-x: 0%;
+  }
+
+  to {
+    background-position-x: -200%;
+  }
+}
