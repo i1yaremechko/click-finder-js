@@ -3,7 +3,7 @@
 A modern, fast, and lightweight Single Page Application (SPA) designed to display and analyze user activity statistics. Built from scratch using pure JavaScript and modular architecture to demonstrate mastery of asynchronous data manipulation and custom client-side routing.
 
 ## 🔗 Live Demo
-[View the Live Project](https://i1yaremechko.github.io/smart-coworking-booking-system/)
+[View the Live Project](https://i1yaremechko.github.io/click-finder-js/)
 
 ## 🛠️ Technologies & Tools
 - **Vanilla JavaScript** (ES6+ Modules, Async/Await)
