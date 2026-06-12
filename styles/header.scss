@@ -83,7 +83,6 @@
   z-index: 1000;
 }
 
-/* Сама лінія, що рухається */
 .linear-progress__bar {
   width: 100%;
   height: 100%;
@@ -92,7 +91,6 @@
   transform-origin: left-center;
 }
 
-/* Анімація бігучої лінії */
 @keyframes linearLoading {
   0% {
     transform: translateX(-100%) scaleX(1);
