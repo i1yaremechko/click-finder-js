@@ -39,7 +39,7 @@ src/
 
 1. **Clone the repository:**
 
-git clone https://github.com/i1yaremechko/smart-coworking-booking-system.git
+git clone https://github.com/i1yaremechko/click-finder-js.git
 cd smart-coworking-booking-system
 
 2. **Launch a Local Server:**

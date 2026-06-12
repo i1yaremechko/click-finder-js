@@ -8,24 +8,26 @@ const homeHTML = mainPageElement ? mainPageElement.innerHTML : '';
 const BASE_URL = window.location.hostname.includes('github.io') ? '/click-finder-js' : '';
 
 export function handleRouting() {
-  let path = window.location.pathname;
+  const currentPath = window.location.pathname; 
   const searchParams = new URLSearchParams(window.location.search);
 
-  if (BASE_URL && path.startsWith(BASE_URL)) {
-    path = path.replace(BASE_URL, '');
+  let cleanPath = currentPath;
+
+  if (BASE_URL && cleanPath.startsWith(BASE_URL)) {
+    cleanPath = cleanPath.replace(BASE_URL, '');
   }
 
-  if (path === '/users/stats') {
-    if (headerElement) headerElement.classList.remove('header_main');
-    if (footerElement) footerElement.classList.remove('footer_main');
-    const currentPage = parseInt(searchParams.get('page')) || 1;
-    renderStatsPage(currentPage);
-  } else {
+  if (cleanPath === '' || cleanPath === '/') {
     if (headerElement) headerElement.classList.add('header_main');
     if (footerElement) footerElement.classList.add('footer_main');
     if (mainPageElement) {
       mainPageElement.innerHTML = homeHTML;
     }
+  } else if (cleanPath === '/users/stats') {
+    if (headerElement) headerElement.classList.remove('header_main');
+    if (footerElement) footerElement.classList.remove('footer_main');
+    const currentPage = parseInt(searchParams.get('page')) || 1;
+    renderStatsPage(currentPage);
   }
 }
 
