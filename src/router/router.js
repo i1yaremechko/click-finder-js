@@ -33,6 +33,6 @@ export function handleRouting() {
 
 export function navigateTo(url) {
   const fullUrl = (BASE_URL && !url.startsWith(BASE_URL)) ? BASE_URL + url : url;
-  window.history.pushState(null, null, url);
+  window.history.pushState(null, null, fullUrl);
   handleRouting();
 }
