@@ -5,9 +5,17 @@ const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
 const homeHTML = mainPageElement ? mainPageElement.innerHTML : '';
 
+const BASE_URL = window.location.hostname.includes('github.io') ? '/click-finder-js' : '';
+
 export function handleRouting() {
   const path = window.location.pathname;
   const searchParams = new URLSearchParams(window.location.search);
+
+  if (BASE_URL && path.startsWith(BASE_URL)) {
+    path = path.replace(BASE_URL, '');
+  }
+
+  if (path === '') path = '/';
 
   if (path === '/users/stats') {
     if (headerElement) headerElement.classList.remove('header_main');
@@ -24,6 +32,7 @@ export function handleRouting() {
 }
 
 export function navigateTo(url) {
+  const fullUrl = BASE_URL + url;
   window.history.pushState(null, null, url);
   handleRouting();
 }
