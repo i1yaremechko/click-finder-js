@@ -21,6 +21,7 @@ A modern, fast, and lightweight Single Page Application (SPA) designed to displa
 
 ## 📁 Project Architecture & Directory Structure
 
+```text
 src/
 ├── components/
 │   └── pagination.js       # Pagination component logic & boundary rendering
