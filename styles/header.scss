@@ -71,3 +71,38 @@
 .wrapper_headline {
   position: relative;
 }
+
+.linear-progress {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #cce3f5;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* Сама лінія, що рухається */
+.linear-progress__bar {
+  width: 100%;
+  height: 100%;
+  background-color: #3a80ba;
+  animation: linearLoading 1.5s infinite ease-in-out;
+  transform-origin: left-center;
+}
+
+/* Анімація бігучої лінії */
+@keyframes linearLoading {
+  0% {
+    transform: translateX(-100%) scaleX(1);
+  }
+
+  50% {
+    transform: translateX(0%) scaleX(0.4);
+  }
+
+  100% {
+    transform: translateX(100%) scaleX(1);
+  }
+}
