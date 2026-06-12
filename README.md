@@ -21,19 +21,27 @@ A modern, fast, and lightweight Single Page Application (SPA) designed to displa
 
 ## 📁 Project Architecture & Directory Structure
 
-```text
 src/
-├── components/
-│   └── pagination.js       # Pagination component logic & boundary rendering
-├── pages/
-│   └── statsPage.js        # Statistics page blueprint & DOM tables generator
-├── router/
-│   └── router.js           # Client-side router & state transition manager
-├── services/
-│   └── usersService.js     # Asynchronous API client & data transformer
-├── index.js                # Application entry point & global event listeners
-└── style.css               # Main stylesheet including core layouts & animations
 
+├── components/
+
+│   └── pagination.js       # Pagination component logic & boundary rendering
+
+├── pages/
+
+│   └── statsPage.js        # Statistics page blueprint & DOM tables generator
+
+├── router/
+
+│   └── router.js           # Client-side router & state transition manager
+
+├── services/
+
+│   └── usersService.js     # Asynchronous API client & data transformer
+
+├── index.js                # Application entry point & global event listeners
+
+└── style.css               # Main stylesheet including core layouts & animations
 
 ## 🚀 How to Run Locally
 
