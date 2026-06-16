@@ -6,6 +6,11 @@ The project features an optimized single-page views toggle system, clean modular
 
 ---
 
+## 🔗 Live Demo
+[View the Live Project](https://i1yaremechko.github.io/click-finder-js/)
+
+---
+
 ## 🚀 Features
 
 *   **Dynamic Screen Toggling:** Seamless switching between the Landing Page and the Statistics View without heavy router overhead or page reloads.
