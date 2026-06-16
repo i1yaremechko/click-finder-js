@@ -51,7 +51,7 @@ function initApp() {
 
   if (hash.includes('users/stats')) {
     const searchPart = hash.split('?')[1];
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(searchPart);
 
     const pageParam = urlParams.get('page');
     const pageNumber = pageParam ? parseInt(pageParam, 10) : 1;
