@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import "https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap";
 * {
   box-sizing: border-box;
@@ -14,6 +13,10 @@ body {
 
 button {
   font-family: Montserrat, sans-serif !important;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .header {
@@ -97,7 +100,6 @@ button {
   z-index: 1000;
 }
 
-/* Сама лінія, що рухається */
 .linear-progress__bar {
   width: 100%;
   height: 100%;
@@ -106,7 +108,6 @@ button {
   transform-origin: left-center;
 }
 
-/* Анімація бігучої лінії */
 @keyframes linearLoading {
   0% {
     transform: translateX(-100%) scaleX(1);
@@ -388,68 +389,65 @@ button {
 }
 
 .pagination {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 8px;
   margin: 23px auto 24px;
-  display: flex;
 }
-
-.pagination__page,
-.pagination__arrow,
-.pagination__ellipsis {
-  cursor: pointer;
-  background: 0 0;
-  border: 2px solid #f1f1f1;
-  border-radius: 8px;
+.pagination__page, .pagination__arrow, .pagination__ellipsis {
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 48px;
   height: 48px;
+  background: transparent;
+  border: 2px solid #f1f1f1;
+  border-radius: 8px;
   font-size: 16px;
-  transition: all 0.2s;
-  display: flex;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-
-.pagination__page:disabled,
-.pagination__arrow:disabled,
-.pagination__ellipsis:disabled {
-  opacity: 0.1;
+.pagination__page:disabled, .pagination__arrow:disabled, .pagination__ellipsis:disabled {
+  border-color: #f1f1f1;
   cursor: not-allowed;
 }
-
-.pagination__page:hover:not(:disabled),
-.pagination__arrow:hover:not(:disabled),
-.pagination__ellipsis:hover:not(:disabled) {
+.pagination__page:hover:not(:disabled), .pagination__arrow:hover:not(:disabled), .pagination__ellipsis:hover:not(:disabled) {
   border-color: #3a80ba;
 }
-
-.pagination__page.active,
-.pagination__arrow.active,
-.pagination__ellipsis.active {
+.pagination__page.active, .pagination__arrow.active, .pagination__ellipsis.active {
   color: #fff;
   background-color: #3a80ba;
   border: none;
 }
-
-.pagination__page.active:hover,
-.pagination__arrow.active:hover,
-.pagination__ellipsis.active:hover {
+.pagination__page.active:hover, .pagination__arrow.active:hover, .pagination__ellipsis.active:hover {
   background-color: #255d8b;
 }
-
 .pagination__arrow {
-  color: #3a80ba;
   border: none;
-  font-size: 68px;
-  position: relative;
-  top: -6px;
-  left: -2px;
 }
-
-.pagination__arrow:first-child {
-  left: 2px;
+.pagination__arrow .pagination__icon {
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.pagination__arrow:hover:not(:disabled) .pagination__icon {
+  transform: scale(1.1);
+}
+.pagination__arrow:first-child:not(:disabled) .pagination__icon {
+  filter: invert(47%) sepia(48%) saturate(996%) hue-rotate(174deg) brightness(88%) contrast(84%);
+  opacity: 1;
+}
+.pagination__arrow:first-child:disabled .pagination__icon {
+  filter: none !important;
+  opacity: 1 !important;
+}
+.pagination__arrow:last-child:not(:disabled) .pagination__icon {
+  filter: none;
+  opacity: 1;
+}
+.pagination__arrow:last-child:disabled .pagination__icon {
+  opacity: 0.25 !important;
 }
 
 .table-wrapper {
@@ -470,6 +468,21 @@ button {
   width: 100%;
   font-family: Montserrat, sans-serif;
   overflow: hidden;
+}
+
+.custom-table__loading {
+  text-align: center;
+  padding: 40px 0;
+  background-color: #fff;
+  font-weight: 500;
+  color: #7e7e7e;
+}
+
+.custom-table__empty {
+  text-align: center;
+  padding: 20px 0;
+  font-weight: 500;
+  color: #7e7e7e;
 }
 
 .custom-table thead th {
@@ -596,6 +609,7 @@ button {
 .statistic__breadcrumbs-item {
   align-items: center;
   display: flex;
+  cursor: pointer;
 }
 
 .statistic__breadcrumbs-separator {

@@ -1,70 +1,5 @@
 @import "variables";
 
-.pagination {
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin: 23px auto 24px;
-  display: flex;
-}
-
-.pagination__page,
-.pagination__arrow,
-.pagination__ellipsis {
-  cursor: pointer;
-  background: 0 0;
-  border: 2px solid $color-light-gray;
-  border-radius: 8px;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  font-size: 16px;
-  transition: all .2s;
-  display: flex;
-}
-
-.pagination__page:disabled,
-.pagination__arrow:disabled,
-.pagination__ellipsis:disabled {
-  opacity: .1;
-  cursor: not-allowed;
-}
-
-.pagination__page:hover:not(:disabled),
-.pagination__arrow:hover:not(:disabled),
-.pagination__ellipsis:hover:not(:disabled) {
-  border-color: $color-primary;
-}
-
-.pagination__page.active,
-.pagination__arrow.active,
-.pagination__ellipsis.active {
-  color: $color-white;
-  background-color: $color-primary;
-  border: none;
-}
-
-.pagination__page.active:hover,
-.pagination__arrow.active:hover,
-.pagination__ellipsis.active:hover {
-  background-color: $color-dark;
-}
-
-.pagination__arrow {
-  color: $color-primary;
-  border: none;
-  font-size: 68px;
-  position: relative;
-  top: -6px;
-  left: -2px;
-}
-
-.pagination__arrow:first-child {
-  left: 2px;
-}
-
 .table-wrapper {
   -webkit-overflow-scrolling: touch;
   width: 100%;
@@ -84,6 +19,21 @@
   width: 100%;
   font-family: $font-main;
   overflow: hidden;
+}
+
+.custom-table__loading {
+  text-align: center;
+  padding: 40px 0;
+  background-color: $color-white;
+  font-weight: 500;
+  color: $color-text-muted;
+}
+
+.custom-table__empty {
+  text-align: center;
+  padding: 20px 0;
+  font-weight: 500;
+  color: $color-text-muted;
 }
 
 .custom-table thead th {

@@ -1,61 +1,66 @@
-# ClickFinder
+# ClickFinder — User Statistics Dashboard
 
-A modern, fast, and lightweight Single Page Application (SPA) designed to display and analyze user activity statistics. Built from scratch using pure JavaScript and modular architecture to demonstrate mastery of asynchronous data manipulation and custom client-side routing.
+A lightweight, high-performance web application built with **Vanilla JavaScript** and **SCSS** that provides a seamless, dynamic interface for tracking and analyzing user statistics.
 
-## 🔗 Live Demo
-[View the Live Project](https://i1yaremechko.github.io/click-finder-js/)
+The project features an optimized single-page views toggle system, clean modular architecture, and custom pagination, fully aligned with the **DRY (Don't Repeat Yourself)** principle and **BEM** methodology.
 
-## 🛠️ Technologies & Tools
-- **Vanilla JavaScript** (ES6+ Modules, Async/Await)
-- **History API** (Custom SPA Router without external frameworks)
-- **SCSS / CSS** (Modular styling with custom CSS animations)
-- **REST API Integration** (Data fetching and aggregation from a remote Vercel server)
+---
 
-## 💡 Features
-- **Custom SPA Routing:** Seamless page transitions between the Landing Page and User Statistics without refreshing the browser, utilizing the HTML5 History API.
-- **Advanced Data Aggregation:** Fetches multi-layered data from independent REST endpoints (Users and Statistics) and aggregates them on the client side using efficient array manipulation (`.map()`, `.filter()`, `.reduce()`).
-- **Dynamic Data Table:** Renders user profiles along with their calculated metrics (Total Clicks and Total Page Views) directly into the DOM.
-- **Mathematical Pagination Component:** Includes a smart chunked pagination algorithm with dynamic boundary rendering and ellipsis (`...`) support for effortless navigation through large datasets.
-- **Linear Progress Indicator:** Implements a sleek, animated top-bar loading indicator (similar to YouTube/GitHub) to provide real-time visual feedback during asynchronous network requests.
-- **Clean Architecture:** Developed following the *Separation of Concerns (SoC)* principle, separating code into Services, Pages, Components, and Routers.
+## 🚀 Features
 
-## 📁 Project Architecture & Directory Structure
+*   **Dynamic Screen Toggling:** Seamless switching between the Landing Page and the Statistics View without heavy router overhead or page reloads.
+*   **Asynchronous Data Processing:** Optimized fetching and aggregation of user data and click/view metrics from a REST API via native `async/await`.
+*   **Custom Pagination Component:** Client-side pagination logic with dynamic ellipsis handle, reducing initial rendering strain.
+*   **Fluid Responsive Layout:** Crafted using advanced SCSS, fully responsive across mobile, tablet, and desktop viewports.
+*   **Visual States:** Seamless progress tracking with CSS-animated loaders and user-friendly "empty states."
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+*   **Logic:** JavaScript (ES6+ Modules)
+*   **Styling:** SCSS (SASS Compiler), structured with BEM methodology (Block-Element-Modifier)
+*   **Build Tool / Environment:** Vite (or your current bundler, e.g., Webpack/Parcel)
+*   **Fonts:** Montserrat (Google Fonts)
+
+### Project Directory Structure
 
 ```text
-src/
-├── components/
-│   └── pagination.js       # Pagination component logic & boundary rendering
-├── pages/
-│   └── statsPage.js        # Statistics page blueprint & DOM tables generator
-├── router/
-│   └── router.js           # Client-side router & state transition manager
-├── services/
-│   └── usersService.js     # Asynchronous API client & data transformer
-├── index.js                # Application entry point & global event listeners
-└── style.css               # Main stylesheet including core layouts & animations
+├── src/
+│   ├── components/
+│   │   └── pagination.js       # Standalone custom pagination logic
+│   ├── pages/
+│   │   └── statsPage.js        # Core data injection & table rendering
+│   ├── services/
+│   │   └── usersService.js     # Async API data management & aggregation
+│   └── index.js                # App entry point & view coordination (The Conductor)
+├── styles/
+│   ├── index.scss              # Global style aggregator
+│   ├── variables.scss          # Centralized style configuration (colors, fonts)
+│   ├── table.scss              # Layout and micro-states for the data table
+│   └── ...                     # BEM-structured component stylesheets
+└── index.html                  # Core application markup with pre-baked view sections
 ```
 
 ## 🚀 How to Run Locally
 
-1. **Clone the repository:**
+1. **Clone the repository:**   
+  ```bash
+  git clone https://github.com/i1yaremechko/click-finder-js.git
+  cd click-finder-js
+  ```
 
-git clone https://github.com/i1yaremechko/click-finder-js.git
-cd smart-coworking-booking-system
+2. **Install the dependencies:**
+   ```bash
+   npm install
+   ```
 
-2. **Launch a Local Server:**
+3. **Compile SCSS styles:**
+   ```bash
+   npm run scss
+   ```
 
-Since the project relies heavily on ES6 Modules (`type="module"`), it cannot be run by simply opening the `index.html` file via `file:///`. You must serve it using a local development server.
-- **Using VS Code (Recommended):** Install the **Live Server** extension, right-click `index.html`, and select **Open with Live Server**.
-- **Using Node.js (Alternative):**
-npx serve .
-
-## ⚙️ API Integration Details
-
-The application communicates with a remote backend hosted on Vercel:
-
-- **Base URL:** `https://appco-snowy.vercel.app/api`
-- **Endpoints Used:**
-  - `GET /users?page={page}&rowsPerPage={limit}` — Fetches the paginated list of registered users.
-  - `GET /users/statistics?userIds={ids}` — Fetches daily raw metrics for the specified user IDs.
-
-The data is merged dynamically on the client side inside `usersService.js` to avoid redundant loading states and minimize network overhead.
+4. **Launch the application:**
+   ```bash
+   Open index.html using the Live Server extension in VS Code or any local static server.
+   ```

@@ -1,13 +1,37 @@
-import { handleRouting, navigateTo } from './router/router.js';
+import { renderStatsPage } from "./pages/statsPage.js";
 
-document.body.addEventListener('click', (e) => {
-  const target = e.target.closest('[data-link]');
-  if (target) {
-    e.preventDefault();
-    const url = target.getAttribute('data-link');
-    navigateTo(url);
-  }
-});
+const homeView = document.getElementById('home-view');
+const statsView = document.getElementById('stats-view');
+const header = document.getElementById('app-header');
+const footer = document.getElementById('app-footer');
 
-window.addEventListener('popstate', handleRouting);
-window.addEventListener('DOMContentLoaded', handleRouting);
+const goToStatsBtn = document.getElementById('go-to-stats-btn');
+const logoHome = document.getElementById('logo-to-home');
+const breadcrumbHome = document.getElementById('breadcrumb-home');
+const footerLogoHome = document.getElementById('footer-logo-to-home');
+
+function switchToHome() {
+  statsView.classList.add('hidden');
+  homeView.classList.remove('hidden');
+
+  header.classList.add('header_main');
+  footer.classList.add('footer_main');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchToStats() {
+  homeView.classList.add('hidden');
+  statsView.classList.remove('hidden');
+
+  header.classList.remove('header_main');
+  footer.classList.remove('footer_main');
+
+  renderStatsPage(1);
+  window.scrollTo({ top: 0 });
+}
+
+if (goToStatsBtn) goToStatsBtn.addEventListener('click', switchToStats);
+if (logoHome) logoHome.addEventListener('click', switchToHome);
+if (breadcrumbHome) breadcrumbHome.addEventListener('click', switchToHome);
+if (footerLogoHome) footerLogoHome.addEventListener('click', switchToHome);
