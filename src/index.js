@@ -34,6 +34,7 @@ function switchToStats(page = 1) {
 if (goToStatsBtn) {
   goToStatsBtn.addEventListener('click', () => {
     window.location.hash = '/users/stats?page=1&rowsPerPage=16';
+    switchToStats(1);
   });
 }
 
@@ -42,6 +43,7 @@ homeButtons.forEach(btn => {
   if (btn) {
     btn.addEventListener('click', () => {
       window.location.hash = '/';
+      switchToHome();
     });
   }
 });
@@ -50,7 +52,7 @@ function initApp() {
   const hash = window.location.hash;
 
   if (hash.includes('users/stats')) {
-    const searchPart = hash.split('?')[1];
+    const searchPart = hash.includes('?') ? hash.split('?')[1] : '';
     const urlParams = new URLSearchParams(searchPart);
 
     const pageParam = urlParams.get('page');
