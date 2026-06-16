@@ -33,8 +33,7 @@ function switchToStats(page = 1) {
 
 if (goToStatsBtn) {
   goToStatsBtn.addEventListener('click', () => {
-    window.history.pushState(null, '', '/users/stats?page=1&rowsPerPage=16');
-    switchToStats(1);
+    window.location.hash = '/users/stats?page=1&rowsPerPage=16';
   });
 }
 
@@ -42,17 +41,18 @@ const homeButtons = [logoHome, breadcrumbHome, footerLogoHome];
 homeButtons.forEach(btn => {
   if (btn) {
     btn.addEventListener('click', () => {
-      window.history.pushState(null, '', '/');
-      switchToHome();
+      window.location.hash = '/';
     });
   }
 });
 
 function initApp() {
-  const path = window.location.pathname;
-  const urlParams = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
 
-  if (path.includes('users/stats')) {
+  if (hash.includes('users/stats')) {
+    const searchPart = hash.split('?')[1];
+    const urlParams = new URLSearchParams(window.location.search);
+
     const pageParam = urlParams.get('page');
     const pageNumber = pageParam ? parseInt(pageParam, 10) : 1;
     switchToStats(pageNumber);
@@ -62,4 +62,4 @@ function initApp() {
 }
 
 window.addEventListener('DOMContentLoaded', initApp);
-window.addEventListener('popstate', initApp);
+window.addEventListener('hashchange', initApp);
