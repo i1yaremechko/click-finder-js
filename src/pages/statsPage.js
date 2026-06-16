@@ -1,13 +1,15 @@
 import { renderPagination } from '../components/pagination.js';
 import { UsersService } from '../services/usersService.js';
 
-const tbody = document.getElementById('table-body');
-const loader = document.getElementById('global-loader');
-
 export async function renderStatsPage(page = 1) {
+  const tbody = document.getElementById('table-body');
+  const loader = document.getElementById('global-loader');
+  
   if (!tbody) return;
   if (loader) loader.classList.remove('hidden');
+  
   const { users, pagesCount } = await UsersService.getFullUsersData(page);
+  
   if (loader) loader.classList.add('hidden');
   if (!users || users.length === 0) {
     tbody.innerHTML = `

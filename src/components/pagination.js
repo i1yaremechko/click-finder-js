@@ -1,7 +1,6 @@
 import { renderStatsPage } from "../pages/statsPage.js";
 
 function getPageRange(currentPage, pagesCount) {
-
   if (currentPage <= 4) {
     return { startPage: 1, endPage: 5 };
   }
@@ -25,7 +24,7 @@ export function renderPagination(currentPage, pagesCount) {
 
   paginationHTML += `
     <button class="pagination__arrow" ${isFirstPage ? 'disabled' : ''} data-page="${currentPage - 1}">
-      <img src="./images/arrow-left.svg" alt="Previous" class="pagination__icon" />
+      <img src="/images/arrow-left.svg" alt="Previous" class="pagination__icon" />
     </button>
   `;
 
@@ -52,7 +51,7 @@ export function renderPagination(currentPage, pagesCount) {
 
   paginationHTML += `
     <button class="pagination__arrow" ${isLastPage ? 'disabled' : ''} data-page="${currentPage + 1}">
-      <img src="./images/arrow-right.svg" alt="Next" class="pagination__icon" />
+      <img src="/images/arrow-right.svg" alt="Next" class="pagination__icon" />
     </button>
   `;
 
@@ -60,9 +59,10 @@ export function renderPagination(currentPage, pagesCount) {
 
   paginationContainer.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', (e) => {
-      const targetPage = parseInt(e.currentTarget.getAttribute('data-page'));
+      const targetPage = parseInt(e.currentTarget.getAttribute('data-page'), 10);
       
       if (isNaN(targetPage) || targetPage === currentPage) return;
+      window.history.pushState(null, '', `/users/stats?page=${targetPage}&rowsPerPage=16`);
       
       renderStatsPage(targetPage);
     });
