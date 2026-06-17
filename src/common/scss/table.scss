@@ -1,0 +1,127 @@
+@import "variables";
+
+.table-wrapper {
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media screen and (width >=1180px) {
+  .table-wrapper {
+    overflow-x: hidden;
+  }
+}
+
+.custom-table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-radius: 10px;
+  width: 100%;
+  font-family: $font-main;
+  overflow: hidden;
+}
+
+.custom-table__loading {
+  text-align: center;
+  padding: 40px 0;
+  background-color: $color-white;
+  font-weight: 500;
+  color: $color-text-muted;
+}
+
+.custom-table__empty {
+  text-align: center;
+  padding: 20px 0;
+  font-weight: 500;
+  color: $color-text-muted;
+}
+
+.custom-table thead th {
+  color: $color-white;
+  text-align: center;
+  background-color: $color-primary;
+  border-right: 1px solid $color-white;
+  height: 49px;
+  padding: 11px 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.custom-table thead th:first-child {
+  width: 64px;
+}
+
+.custom-table thead th:nth-child(2) {
+  width: 151px;
+}
+
+.custom-table thead th:nth-child(3) {
+  width: 133px;
+}
+
+.custom-table thead th:nth-child(4) {
+  width: 239px;
+}
+
+.custom-table thead th:nth-child(5) {
+  width: 112px;
+}
+
+.custom-table thead th:nth-child(6) {
+  width: 147px;
+}
+
+.custom-table thead th:nth-child(7) {
+  width: 153px;
+}
+
+.custom-table thead th:nth-child(8) {
+  width: 181px;
+}
+
+.custom-table tbody tr {
+  background-color: $color-table-bg-1;
+}
+
+.custom-table tbody tr:nth-child(2n) {
+  background-color: $color-light-gray;
+}
+
+.custom-table tbody td {
+  cursor: default;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  border-bottom: none;
+  border-right: 1px solid $color-white;
+  padding: 6.25px 0;
+  font-size: 16px;
+  line-height: 19.5px;
+  overflow: hidden;
+}
+
+.custom-table tbody td:nth-child(4) {
+  text-align: start;
+  padding: 6.25px 24px;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #3a80ba 0% 50%, #0000 100%) 0 0 / 200% 100%;
+  border-radius: 10px;
+  height: 5px;
+  animation: 1.5s linear infinite loading;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+@keyframes loading {
+  0% {
+    background-position-x: 0%;
+  }
+
+  to {
+    background-position-x: -200%;
+  }
+}

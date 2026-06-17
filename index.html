@@ -2,35 +2,23 @@
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./images/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ClickFinder</title>
-
-    <script>
-      const isGitHub = window.location.hostname.includes('github.io');
-      const repoName = window.location.pathname.split('/')[1];
-
-      const base = document.createElement('base');
-      base.href = isGitHub ? `/${repoName}/` : '/';
-      document.head.appendChild(base);
-    </script>
-
-    <link rel="stylesheet" href="styles.css" />
+    <title>ClickFinder - Main Page</title>
+    <link rel="stylesheet" href="/src/common/scss/index.scss" />
   </head>
   <body>
     <div id="root">
       <div class="page">
-        <header class="header header_main" id="app-header">
+        <header class="header header_main">
           <div class="wrapper">
-            <span class="header__logo" id="logo-to-home">ClickFinder</span>
+            <a href="/" class="header__logo-link" style="text-decoration: none; color: inherit">
+              <span class="header__logo">ClickFinder</span>
+            </a>
           </div>
         </header>
 
-        <main class="main" id="main-content">
-          <div class="linear-progress hidden" id="global-loader">
-            <div class="linear-progress__bar"></div>
-          </div>
-
+        <main class="main">
           <div id="home-view">
             <section class="headline">
               <div class="wrapper wrapper_headline">
@@ -42,12 +30,14 @@
                     Our design projects are fresh and simple and will benefit your business greatly.
                     Learn more about our work!
                   </p>
-                  <button class="headline__button" id="go-to-stats-btn">Views Stats</button>
+                  <a href="/users/stats/" style="text-decoration: none; display: inline-block">
+                    <button class="headline__button">Views Stats</button>
+                  </a>
                 </div>
                 <img
                   class="headline__decoration"
                   alt="Decoration"
-                  src="images/decoration_headline.png"
+                  src="/images/decoration_headline.png"
                 />
               </div>
             </section>
@@ -63,7 +53,7 @@
                   <img
                     class="advatage-card__image"
                     alt="Clean Design"
-                    src="images/card-1__advantages.png"
+                    src="/images/card-1__advantages.png"
                   />
                   <h4 class="advatage-card__title">Clean Design</h4>
                   <p class="advatage-card__description">
@@ -74,7 +64,7 @@
                   <img
                     class="advatage-card__image"
                     alt="Secure Data"
-                    src="images/card-2__advantages.png"
+                    src="/images/card-2__advantages.png"
                   />
                   <h4 class="advatage-card__title">Secure Data</h4>
                   <p class="advatage-card__description">
@@ -85,7 +75,7 @@
                   <img
                     class="advatage-card__image"
                     alt="Retina Ready"
-                    src="images/card-3__advantages.png"
+                    src="/images/card-3__advantages.png"
                   />
                   <h4 class="advatage-card__title">Retina Ready</h4>
                   <p class="advatage-card__description">
@@ -107,53 +97,13 @@
               </form>
             </section>
           </div>
-
-          <div class="hidden" id="stats-view">
-            <section class="statistic">
-              <div class="wrapper wrapper_stat">
-                <div class="statistic__breadcrumbs">
-                  <ul class="statistic__breadcrumbs-list">
-                    <li class="statistic__breadcrumbs-item">
-                      <span class="statistic__link statistic__link_back" id="breadcrumb-home"
-                        >Main page</span
-                      >
-                    </li>
-                    <li class="statistic__breadcrumbs-separator">›</li>
-                    <li class="statistic__breadcrumbs-item">
-                      <span class="statistic__link">User statistics</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <h2 class="statistic__title">Users statistics</h2>
-
-                <div class="table-wrapper">
-                  <table class="custom-table">
-                    <thead>
-                      <tr>
-                        <th>Id</th>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Email</th>
-                        <th>Gender</th>
-                        <th>IP address</th>
-                        <th>Total clicks</th>
-                        <th>Total page views</th>
-                      </tr>
-                    </thead>
-                    <tbody id="table-body"></tbody>
-                  </table>
-                </div>
-
-                <div id="pagination-container" class="pagination"></div>
-              </div>
-            </section>
-          </div>
         </main>
 
-        <footer class="footer footer_main" id="app-footer">
+        <footer class="footer footer_main">
           <div class="wrapper">
-            <span class="footer__logo" id="footer-logo-to-home">ClickFinder</span>
+            <a href="/" class="footer__logo-link" style="text-decoration: none; color: inherit">
+              <span class="footer__logo">ClickFinder</span>
+            </a>
             <span class="footer__rights footer__rights_reserved"
               >All rights reserved by ThemeTags</span
             >
@@ -162,6 +112,6 @@
         </footer>
       </div>
     </div>
-    <script type="module" src="src/index.js"></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
