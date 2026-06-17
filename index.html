@@ -5,7 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ClickFinder</title>
-    <link rel="stylesheet" href="./styles.css" />
+
+    <script>
+      const isGitHub = window.location.hostname.includes('github.io');
+      const repoName = window.location.pathname.split('/')[1];
+
+      const base = document.createElement('base');
+      base.href = isGitHub ? `/${repoName}/` : '/';
+      document.head.appendChild(base);
+    </script>
+
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div id="root">
@@ -37,7 +47,7 @@
                 <img
                   class="headline__decoration"
                   alt="Decoration"
-                  src="./images/decoration_headline.png"
+                  src="images/decoration_headline.png"
                 />
               </div>
             </section>
@@ -53,7 +63,7 @@
                   <img
                     class="advatage-card__image"
                     alt="Clean Design"
-                    src="./images/card-1__advantages.png"
+                    src="images/card-1__advantages.png"
                   />
                   <h4 class="advatage-card__title">Clean Design</h4>
                   <p class="advatage-card__description">
@@ -64,7 +74,7 @@
                   <img
                     class="advatage-card__image"
                     alt="Secure Data"
-                    src="./images/card-2__advantages.png"
+                    src="images/card-2__advantages.png"
                   />
                   <h4 class="advatage-card__title">Secure Data</h4>
                   <p class="advatage-card__description">
@@ -75,7 +85,7 @@
                   <img
                     class="advatage-card__image"
                     alt="Retina Ready"
-                    src="./images/card-3__advantages.png"
+                    src="images/card-3__advantages.png"
                   />
                   <h4 class="advatage-card__title">Retina Ready</h4>
                   <p class="advatage-card__description">
@@ -152,6 +162,6 @@
         </footer>
       </div>
     </div>
-    <script type="module" src="./src/index.js"></script>
+    <script type="module" src="src/index.js"></script>
   </body>
 </html>

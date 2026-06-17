@@ -19,11 +19,14 @@ export function renderPagination(currentPage, pagesCount) {
   const isLastPage = currentPage === pagesCount;
   const { startPage, endPage } = getPageRange(currentPage, pagesCount);
 
+  const isGitHub = window.location.hostname.includes('github.io');
+  const basePath = isGitHub ? `/${window.location.pathname.split('/')[1]}` : '';
+
   let paginationHTML = '';
 
   paginationHTML += `
     <button class="pagination__arrow" ${isFirstPage ? 'disabled' : ''} data-page="${currentPage - 1}">
-      <img src="./images/arrow-left.svg" alt="Previous" class="pagination__icon" />
+      <img src="${basePath}/images/arrow-left.svg" alt="Previous" class="pagination__icon" />
     </button>
   `;
 
@@ -50,7 +53,7 @@ export function renderPagination(currentPage, pagesCount) {
 
   paginationHTML += `
     <button class="pagination__arrow" ${isLastPage ? 'disabled' : ''} data-page="${currentPage + 1}">
-      <img src="./images/arrow-right.svg" alt="Next" class="pagination__icon" />
+      <img src="${basePath}/images/arrow-right.svg" alt="Next" class="pagination__icon" />
     </button>
   `;
 
@@ -61,7 +64,8 @@ export function renderPagination(currentPage, pagesCount) {
       const targetPage = parseInt(e.currentTarget.getAttribute('data-page'), 10);
       
       if (isNaN(targetPage) || targetPage === currentPage) return;
-      window.location.hash =  `/users/stats?page=${targetPage}&rowsPerPage=16`;
+      window.history.pushState({}, '', `${basePath}/users/stats?page=${targetPage}&rowsPerPage=16`);
+      window.dispatchEvent(new PopStateEvent('popstate'));
     });
   });
 }

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirect</title>
+    <script>
+      const repoName = window.location.pathname.split('/')[1];
+      const isGitHub = window.location.hostname.includes('github.io');
+      const basePrefix = isGitHub ? `/${repoName}` : '';
+      const path = window.location.pathname.replace(basePrefix, '');
+
+      sessionStorage.redirect = path + window.location.search;
+      window.location.replace(basePrefix + '/');
+    </script>
+  </head>
+  <body></body>
+</html>

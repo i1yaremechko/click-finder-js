@@ -10,6 +10,9 @@ const logoHome = document.getElementById('logo-to-home');
 const breadcrumbHome = document.getElementById('breadcrumb-home');
 const footerLogoHome = document.getElementById('footer-logo-to-home');
 
+const isGitHub = window.location.hostname.includes('github.io');
+const basePath = isGitHub ? `/${window.location.pathname.split('/')[1]}` : '';
+
 function switchToHome() {
   statsView.classList.add('hidden');
   homeView.classList.remove('hidden');
@@ -33,7 +36,7 @@ function switchToStats(page = 1) {
 
 if (goToStatsBtn) {
   goToStatsBtn.addEventListener('click', () => {
-    window.location.hash = '/users/stats?page=1&rowsPerPage=16';
+    window.history.pushState({}, '', `${basePath}/users/stats?page=1&rowsPerPage=16`);
     switchToStats(1);
   });
 }
@@ -42,19 +45,23 @@ const homeButtons = [logoHome, breadcrumbHome, footerLogoHome];
 homeButtons.forEach(btn => {
   if (btn) {
     btn.addEventListener('click', () => {
-      window.location.hash = '/';
+      window.history.pushState({}, '', `${basePath}/`);
       switchToHome();
     });
   }
 });
 
 function initApp() {
-  const hash = window.location.hash;
+  const redirect = sessionStorage.redirect;
+  if (redirect) {
+    delete sessionStorage.redirect;
+    window.history.replaceState({}, '', basePath + redirect);
+  }
 
-  if (hash.includes('users/stats')) {
-    const searchPart = hash.includes('?') ? hash.split('?')[1] : '';
-    const urlParams = new URLSearchParams(searchPart);
+  const path = window.location.pathname;
+  const urlParams = new URLSearchParams(window.location.search);
 
+  if (path.includes('/users/stats')) {
     const pageParam = urlParams.get('page');
     const pageNumber = pageParam ? parseInt(pageParam, 10) : 1;
     switchToStats(pageNumber);
@@ -64,4 +71,4 @@ function initApp() {
 }
 
 window.addEventListener('DOMContentLoaded', initApp);
-window.addEventListener('hashchange', initApp);
+window.addEventListener('popstate', initApp);
