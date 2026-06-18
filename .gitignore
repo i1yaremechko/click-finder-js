@@ -1,0 +1,10 @@
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.sass-cache/
+*.css.map
+*.sass.map
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
