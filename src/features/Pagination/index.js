@@ -1,6 +1,6 @@
 import { getPageRange } from './utils/index.js';
 
-export function renderPagination(currentPage, pagesCount) {
+export function renderPagination(currentPage, pagesCount, onPageChange) {
   const paginationContainer = document.getElementById('pagination-container');
   if (!paginationContainer) return;
 
@@ -8,11 +8,13 @@ export function renderPagination(currentPage, pagesCount) {
   const isLastPage = currentPage === pagesCount;
   const { startPage, endPage } = getPageRange(currentPage, pagesCount);
 
+  const baseUrl = import.meta.env.BASE_URL;
+
   let paginationHTML = '';
 
   paginationHTML += `
     <button class="pagination__arrow" ${isFirstPage ? 'disabled' : ''} data-page="${currentPage - 1}">
-      <img src="/images/arrow-left.svg" alt="Previous" class="pagination__icon" />
+      <img src="${baseUrl}images/arrow-left.svg" alt="Previous" class="pagination__icon" />
     </button>
   `;
 
@@ -37,7 +39,7 @@ export function renderPagination(currentPage, pagesCount) {
 
   paginationHTML += `
     <button class="pagination__arrow" ${isLastPage ? 'disabled' : ''} data-page="${currentPage + 1}">
-      <img src="/images/arrow-right.svg" alt="Next" class="pagination__icon" />
+      <img src="${baseUrl}images/arrow-right.svg" alt="Next" class="pagination__icon" />
     </button>
   `;
 
@@ -47,8 +49,13 @@ export function renderPagination(currentPage, pagesCount) {
     button.addEventListener('click', (e) => {
       const targetPage = parseInt(e.currentTarget.getAttribute('data-page'), 10);
       if (isNaN(targetPage) || targetPage === currentPage) return;
+
+      const newUrl = `${window.location.pathname}?page=${targetPage}`;
+      window.history.pushState({ page: targetPage }, '', newUrl);
       
-      window.location.search = `?page=${targetPage}`;
+      if (typeof onPageChange === 'function') {
+        onPageChange(targetPage);
+      }
     });
   });
 }

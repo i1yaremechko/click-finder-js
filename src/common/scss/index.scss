@@ -1,12 +1,12 @@
-@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap";
+@use "./variables.scss";
+@use "./breakpoints.scss";
+@use "./reset.scss";
+@use "./header.scss";
+@use "./home.scss";
+@use "./table.scss";
+@use "./pagination.scss";
+@use "./footer.scss";
+@use "./stats.scss";
+@use "./error.scss";
 
-@import "./variables.scss";
-@import "./breakpoints.scss";
-@import "./reset.scss";
-@import "./header.scss";
-@import "./home.scss";
-@import "./footer.scss";
-@import "./pagination.scss";
-@import "./table.scss";
-@import "./stats.scss";
-@import "./error.scss";
+@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap";

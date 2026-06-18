@@ -5,5 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const pageParam = urlParams.get('page');
   const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
 
-  renderStatisticsTable(currentPage);
+  renderStatisticsTable(currentPage, true);
+});
+
+window.addEventListener('popstate', (e) => {
+  const page = e.state?.page || 1;
+  renderStatisticsTable(page, false);
 });

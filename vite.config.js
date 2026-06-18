@@ -2,7 +2,14 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './',
+  base: '/click-finder-js/', 
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
+  },
   build: {
     rollupOptions: {
       input: {

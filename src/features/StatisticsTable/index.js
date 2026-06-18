@@ -2,12 +2,15 @@ import { renderPagination } from '../Pagination/index.js';
 import { StatisticsGateway } from './gateways/index.js';
 import { combineUsersWithStats } from './utils/index.js';
 
-export async function renderStatisticsTable(page = 1) {
+export async function renderStatisticsTable(page = 1, isFirstLoad = false) {
   const tbody = document.getElementById('table-body');
   const loader = document.getElementById('global-loader');
   
   if (!tbody) return;
-  if (loader) loader.classList.remove('hidden');
+  if (isFirstLoad && loader) {
+    loader.classList.remove('hidden');
+    tbody.innerHTML = '';
+  }
 
   try {
     const usersResponse = await StatisticsGateway.fetchUsers(page);
@@ -37,7 +40,9 @@ export async function renderStatisticsTable(page = 1) {
       </tr>
     `).join('');
 
-    renderPagination(page, pagesCount);
+    renderPagination(page, pagesCount, (newPage) => {
+      renderStatisticsTable(newPage, false);
+    });
   } catch (error) {
     console.error(error);
     tbody.innerHTML = `<tr><td colspan="8" class="custom-table__empty">Error loading data</td></tr>`;
