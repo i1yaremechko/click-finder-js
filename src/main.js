@@ -1,1 +1,1 @@
-console.log('Home page initialized');
+import './styles/index.scss';

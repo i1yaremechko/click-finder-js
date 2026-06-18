@@ -1,4 +1,5 @@
-@use "./variables" as *;
+@use "../common/scss/variables" as *;
+@use "../common/scss/breakpoints" as *;
 
 .footer {
   color: $color-white;
@@ -28,7 +29,7 @@
   display: none;
 }
 
-@media screen and (width >=1180px) {
+@include respond-to(desktop) {
   .footer__rights {
     display: inline;
   }

@@ -1,6 +1,6 @@
-@use "./variables.scss";
-@use "./breakpoints.scss";
-@use "./reset.scss";
+@use "../common/scss/variables.scss";
+@use "../common/scss/breakpoints.scss";
+@use "../common/scss/reset.scss";
 @use "./header.scss";
 @use "./home.scss";
 @use "./table.scss";

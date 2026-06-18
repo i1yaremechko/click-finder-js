@@ -1,4 +1,5 @@
-@use "./variables" as *;
+@use "../common/scss/variables" as *;
+@use "../common/scss/breakpoints" as *;
 
 .wrapper_stat {
   flex-direction: column;
@@ -7,7 +8,7 @@
   padding: 0;
 }
 
-@media screen and (width >=1180px) {
+@include respond-to(desktop) {
   .wrapper_stat {
     width: 1180px;
   }
@@ -17,7 +18,7 @@
   padding: 16px;
 }
 
-@media screen and (width >=1180px) {
+@include respond-to(desktop) {
   .statistic {
     padding: 16px 0 0;
   }

@@ -1,4 +1,5 @@
-@use "./variables" as *;
+@use "../common/scss/variables" as *;
+@use "../common/scss/breakpoints" as *;
 
 .table-wrapper {
   -webkit-overflow-scrolling: touch;
@@ -6,7 +7,7 @@
   overflow-x: auto;
 }
 
-@media screen and (width >=1180px) {
+@include respond-to(desktop) {
   .table-wrapper {
     overflow-x: hidden;
   }

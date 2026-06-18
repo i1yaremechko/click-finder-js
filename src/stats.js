@@ -1,4 +1,5 @@
 import { renderStatisticsTable } from './features/StatisticsTable/index.js';
+import './styles/index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
