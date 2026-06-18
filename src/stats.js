@@ -1,15 +1,4 @@
-import { renderStatisticsTable } from './features/StatisticsTable/index.js';
+import { initStatistics } from './features/StatisticsTable/index.js';
 import './styles/index.scss';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const pageParam = urlParams.get('page');
-  const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
-
-  renderStatisticsTable(currentPage, true);
-});
-
-window.addEventListener('popstate', (e) => {
-  const page = e.state?.page || 1;
-  renderStatisticsTable(page, false);
-});
+initStatistics();

@@ -1,6 +1,15 @@
 import { DEFAULT_PAGE } from '../../common/constants/index.js';
 import { getPageRange } from './utils/index.js';
 
+const renderArrow = (targetPage, isDisabled, iconName, altText) => {
+  const baseUrl = import.meta.env.BASE_URL;
+  return `
+    <button class="pagination__arrow" ${isDisabled ? 'disabled' : ''} data-page="${targetPage}">
+      <img src="${baseUrl}images/${iconName}.svg" alt="${altText}" class="pagination__icon" />
+    </button>
+  `;
+};
+
 export function renderPagination(currentPage, pagesCount, onPageChange) {
   const paginationContainer = document.getElementById('pagination-container');
   if (!paginationContainer) return;
@@ -9,20 +18,14 @@ export function renderPagination(currentPage, pagesCount, onPageChange) {
   const isLastPage = currentPage === pagesCount;
   const { startPage, endPage } = getPageRange(currentPage, pagesCount);
 
-  const baseUrl = import.meta.env.BASE_URL;
-
   let paginationHTML = '';
 
-  paginationHTML += `
-    <button class="pagination__arrow" ${isFirstPage ? 'disabled' : ''} data-page="${currentPage - 1}">
-      <img src="${baseUrl}images/arrow-left.svg" alt="Previous" class="pagination__icon" />
-    </button>
-  `;
+  paginationHTML += renderArrow(currentPage - 1, isFirstPage, 'arrow-left', 'Previous');
 
-  if (startPage > 1) {
-    paginationHTML += `<button class="pagination__page" data-page="1">1</button>`;
+  if (startPage > DEFAULT_PAGE) {
+    paginationHTML += `<button class="pagination__page" data-page="${DEFAULT_PAGE}">${DEFAULT_PAGE}</button>`;
   }
-  if (startPage > 2) {
+  if (startPage > DEFAULT_PAGE + 1) {
     paginationHTML += `<span class="pagination__ellipsis">...</span>`;
   }
 
@@ -38,11 +41,7 @@ export function renderPagination(currentPage, pagesCount, onPageChange) {
     paginationHTML += `<button class="pagination__page" data-page="${pagesCount}">${pagesCount}</button>`;
   }
 
-  paginationHTML += `
-    <button class="pagination__arrow" ${isLastPage ? 'disabled' : ''} data-page="${currentPage + 1}">
-      <img src="${baseUrl}images/arrow-right.svg" alt="Next" class="pagination__icon" />
-    </button>
-  `;
+  paginationHTML += renderArrow(currentPage + 1, isLastPage, 'arrow-right', 'Next');
 
   paginationContainer.innerHTML = paginationHTML;
 
