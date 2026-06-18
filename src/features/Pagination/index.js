@@ -1,10 +1,11 @@
+import { DEFAULT_PAGE } from '../../common/constants/index.js';
 import { getPageRange } from './utils/index.js';
 
 export function renderPagination(currentPage, pagesCount, onPageChange) {
   const paginationContainer = document.getElementById('pagination-container');
   if (!paginationContainer) return;
 
-  const isFirstPage = currentPage === 1;
+  const isFirstPage = currentPage === DEFAULT_PAGE;
   const isLastPage = currentPage === pagesCount;
   const { startPage, endPage } = getPageRange(currentPage, pagesCount);
 

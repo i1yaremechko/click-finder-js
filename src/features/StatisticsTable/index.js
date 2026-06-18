@@ -1,3 +1,4 @@
+import { DEFAULT_ROWS_PER_PAGE } from '../../common/constants/index.js';
 import { renderPagination } from '../Pagination/index.js';
 import { StatisticsGateway } from './gateways/index.js';
 import { combineUsersWithStats } from './utils/index.js';
@@ -9,7 +10,7 @@ export async function renderStatisticsTable(page = 1, isFirstLoad = false) {
   if (!tbody) return;
 
   const urlParams = new URLSearchParams(window.location.search);
-  const rowsPerPage = parseInt(urlParams.get('rowsPerPage')) || 16;
+  const rowsPerPage = parseInt(urlParams.get('rowsPerPage'), 10) || DEFAULT_ROWS_PER_PAGE;
   
   if (loader) {
     loader.classList.remove('hidden');
