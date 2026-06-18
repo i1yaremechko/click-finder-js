@@ -7,9 +7,8 @@ export async function renderStatisticsTable(page = 1, isFirstLoad = false) {
   const loader = document.getElementById('global-loader');
   
   if (!tbody) return;
-  if (isFirstLoad && loader) {
+  if (loader) {
     loader.classList.remove('hidden');
-    tbody.innerHTML = '';
   }
 
   try {
