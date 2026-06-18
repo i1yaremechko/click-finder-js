@@ -7,12 +7,16 @@ export async function renderStatisticsTable(page = 1, isFirstLoad = false) {
   const loader = document.getElementById('global-loader');
   
   if (!tbody) return;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const rowsPerPage = parseInt(urlParams.get('rowsPerPage')) || 16;
+  
   if (loader) {
     loader.classList.remove('hidden');
   }
 
   try {
-    const usersResponse = await StatisticsGateway.fetchUsers(page);
+    const usersResponse = await StatisticsGateway.fetchUsers(page, rowsPerPage);
     let users = usersResponse?.data || [];
     const pagesCount = usersResponse?.pagesCount || 1;
 
@@ -40,6 +44,8 @@ export async function renderStatisticsTable(page = 1, isFirstLoad = false) {
     `).join('');
 
     renderPagination(page, pagesCount, (newPage) => {
+      const newUrl = `${window.location.pathname}?page=${newPage}&rowsPerPage=${rowsPerPage}`;
+      window.history.pushState({}, '', newUrl);
       renderStatisticsTable(newPage, false);
     });
   } catch (error) {
