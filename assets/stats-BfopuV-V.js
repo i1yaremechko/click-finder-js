@@ -1,0 +1,16 @@
+import"./index-EDcpanZ-.js";const c=1,_=16;function P(a,n){return a<=4?{startPage:1,endPage:5}:a>=n-3?{startPage:n-4,endPage:n}:{startPage:a-1,endPage:a+1}}const u=(a,n,t,s)=>`
+    <button class="pagination__arrow" ${n?"disabled":""} data-page="${a}">
+      <img src="/click-finder-js/images/${t}.svg" alt="${s}" class="pagination__icon" />
+    </button>
+  `;function b(a,n,t){const s=document.getElementById("pagination-container");if(!s)return;const l=a===c,p=a===n,{startPage:e,endPage:i}=P(a,n);let o="";o+=u(a-1,l,"arrow-left","Previous"),e>c&&(o+=`<button class="pagination__page" data-page="${c}">${c}</button>`),e>c+1&&(o+='<span class="pagination__ellipsis">...</span>');for(let r=e;r<=i;r++)o+=`<button class="pagination__page ${r===a?"active":""}" data-page="${r}">${r}</button>`;i<n-1&&(o+='<span class="pagination__ellipsis">...</span>'),i<n&&(o+=`<button class="pagination__page" data-page="${n}">${n}</button>`),o+=u(a+1,p,"arrow-right","Next"),s.innerHTML=o,s.querySelectorAll("button").forEach(r=>{r.addEventListener("click",f=>{const d=parseInt(f.currentTarget.getAttribute("data-page"),10);if(isNaN(d)||d===a)return;const g=`${window.location.pathname}?page=${d}`;window.history.pushState({page:d},"",g),typeof t=="function"&&t(d)})})}const m="https://appco-snowy.vercel.app/api",$={async fetchUsers(a=c,n=_){const t=await fetch(`${m}/users?page=${a}&rowsPerPage=${n}`);if(!t.ok)throw new Error("Error loading users");return t.json()},async fetchUsersStats(a){const n=await fetch(`${m}/users/statistics?userIds=${a}`);if(!n.ok)throw new Error("Error loading statistics");return n.json()}};function y(a,n){return a.map(t=>{const s=n.filter(e=>e.user_id===t.id),l=s.reduce((e,i)=>e+(i.clicks||0),0),p=s.reduce((e,i)=>e+(i.page_views||0),0);return{...t,totalClicks:l,totalPageViews:p}})}const L=(a,n)=>{n.innerHTML=a.map(t=>`
+    <tr>
+      <td>${t.id}</td>
+      <td>${t.first_name}</td>
+      <td>${t.last_name}</td>
+      <td>${t.email}</td>
+      <td>${t.gender}</td>
+      <td>${t.ip_address||"-"}</td>
+      <td>${t.totalClicks}</td>
+      <td>${t.totalPageViews}</td>
+    </tr>
+  `).join("")};async function w(a=c,n=!1){const t=document.getElementById("table-body"),s=document.getElementById("global-loader");if(!t)return;const l=new URLSearchParams(window.location.search),p=parseInt(l.get("rowsPerPage"),10)||_;s&&s.classList.remove("hidden");try{const e=await $.fetchUsers(a,p);let i=(e==null?void 0:e.data)||[];const o=(e==null?void 0:e.pagesCount)||1;if(i.length===0){t.innerHTML='<tr><td colspan="8" class="custom-table__empty">No users found</td></tr>';return}const r=i.map(g=>g.id).join(","),f=await $.fetchUsersStats(r),d=y(i,f);L(d,t),b(a,o,g=>{const h=`${window.location.pathname}?page=${g}&rowsPerPage=${p}`;window.history.pushState({},"",h),w(g,!1)})}catch(e){console.error(e),t.innerHTML='<tr><td colspan="8" class="custom-table__empty">Error loading data</td></tr>'}finally{s&&s.classList.add("hidden")}}function E(){document.addEventListener("DOMContentLoaded",()=>{const n=new URLSearchParams(window.location.search).get("page"),t=n?parseInt(n,10):c;w(t,!0)}),window.addEventListener("popstate",a=>{var t;const n=((t=a.state)==null?void 0:t.page)||c;w(n,!1)})}E();
