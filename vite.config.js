@@ -18,4 +18,11 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      '@common': resolve(__dirname, './src/common'),
+      '@features': resolve(__dirname, './src/features'),
+      '@styles': resolve(__dirname, './src/styles'),
+    },
+  },
 });

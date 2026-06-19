@@ -9,7 +9,11 @@ export const StatisticsGateway = {
     return response.json();
   },
 
-  async fetchUsersStats(userIds) {
+  async fetchUsersStats(page = DEFAULT_PAGE, rowsPerPage = DEFAULT_ROWS_PER_PAGE) {
+    const startId = (page - 1) * rowsPerPage + 1;
+    const idsArray = Array.from({ length: rowsPerPage }, (_, index) => startId + index);
+    const userIds = idsArray.join(',');
+    
     const response = await fetch(`${API_URL}/users/statistics?userIds=${userIds}`);
     if (!response.ok) throw new Error('Error loading statistics');
     return response.json();

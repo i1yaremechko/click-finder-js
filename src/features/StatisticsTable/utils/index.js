@@ -6,4 +6,4 @@ export const combineUsersWithStats = (users, stats) => {
     
     return { ...user, totalClicks, totalPageViews };
   });
-}
+};

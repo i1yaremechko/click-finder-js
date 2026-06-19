@@ -1,5 +1,7 @@
-import { DEFAULT_PAGE } from '../../common/constants/index.js';
+import { DEFAULT_PAGE } from '@common/constants/index.js';
 import { getPageRange } from './utils/index.js';
+
+const ELLIPSIS_HTML = `<span class="pagination__ellipsis">...</span>`;
 
 const renderArrow = (targetPage, isDisabled, iconName, altText) => {
   const baseUrl = import.meta.env.BASE_URL;
@@ -26,7 +28,7 @@ export const renderPagination = (currentPage, pagesCount, onPageChange) => {
     paginationHTML += `<button class="pagination__page" data-page="${DEFAULT_PAGE}">${DEFAULT_PAGE}</button>`;
   }
   if (startPage > DEFAULT_PAGE + 1) {
-    paginationHTML += `<span class="pagination__ellipsis">...</span>`;
+    paginationHTML += ELLIPSIS_HTML;
   }
 
   for (let i = startPage; i <= endPage; i++) {
@@ -35,7 +37,7 @@ export const renderPagination = (currentPage, pagesCount, onPageChange) => {
   }
 
   if (endPage < pagesCount - 1) {
-    paginationHTML += `<span class="pagination__ellipsis">...</span>`;
+    paginationHTML += ELLIPSIS_HTML;
   }
   if (endPage < pagesCount) {
     paginationHTML += `<button class="pagination__page" data-page="${pagesCount}">${pagesCount}</button>`;
@@ -58,4 +60,4 @@ export const renderPagination = (currentPage, pagesCount, onPageChange) => {
       }
     });
   });
-}
+};
