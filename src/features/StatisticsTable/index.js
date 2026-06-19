@@ -18,7 +18,7 @@ const renderRows = (users, tbody) => {
   `).join('');
 };
 
-export async function renderStatisticsTable(page = DEFAULT_PAGE, isFirstLoad = false) {
+export const renderStatisticsTable = async (page = DEFAULT_PAGE, isFirstLoad = false) => {
   const tbody = document.getElementById('table-body');
   const loader = document.getElementById('global-loader');
   
@@ -61,7 +61,7 @@ export async function renderStatisticsTable(page = DEFAULT_PAGE, isFirstLoad = f
   }
 }
 
-export function initStatistics() {
+export const initStatistics = () => {
   document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const pageParam = urlParams.get('page');

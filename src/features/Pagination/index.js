@@ -10,7 +10,7 @@ const renderArrow = (targetPage, isDisabled, iconName, altText) => {
   `;
 };
 
-export function renderPagination(currentPage, pagesCount, onPageChange) {
+export const renderPagination = (currentPage, pagesCount, onPageChange) => {
   const paginationContainer = document.getElementById('pagination-container');
   if (!paginationContainer) return;
 
